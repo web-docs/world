@@ -36,7 +36,7 @@
 		
 	}else if( $view=='' ){ //  главная страница
 			
-		loadController('MainController','index');
+		loadController('MainController','filter');
 		
 	}else{ // страница ошибки 404 
 
