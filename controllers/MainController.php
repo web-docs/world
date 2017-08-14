@@ -11,8 +11,6 @@ Class MainController extends Controller{
 			
 	public function filter(){
 		
-		//print_r($_SERVER);
-		
 		$sort = $_GET['sort'];
 		
 		$type = $_GET['type'];
@@ -23,10 +21,7 @@ Class MainController extends Controller{
 			$sort = str_replace('-','',$sort);
 			$sort_asc = false;
 			$sort_direct = ''; // направление поиска по выбранной колонке
-			//echo 'aaa' . $sort; exit;
 		}	
-		//echo $sort_direct . ' '. $sort ; 
-		
 		
 		if( $world = $this->loadModel('World') ){
 			$_sort = 'continent ASC'; // сорт по умолчанию
@@ -42,12 +37,7 @@ Class MainController extends Controller{
 			}
 			
 			$query = "SELECT Country.continent as continent, 
-	Country.region as region, 
-	Count(DISTINCT Country.code) as countries, 
-	SUM(DISTINCT Country.LifeExpectancy)/COUNT(DISTINCT Country.LifeExpectancy) as lifeexpectancy, 
-	SUM(DISTINCT Country.population) as population, 
-	Count(DISTINCT City.Name) as cities, 
-	COUNT(DISTINCT CountryLanguage.Language) as language 
+	Country.region as region	
 	FROM Country
 		left JOIN City ON Country.code=City.CountryCode 					
 		left JOIN CountryLanguage ON Country.code=CountryLanguage.CountryCode
